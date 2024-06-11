@@ -1,0 +1,2 @@
+# administrativeDivision
+天地图官网行政区划数据（GeoJSON），转换为Shapefile以及GeoPackage格式
