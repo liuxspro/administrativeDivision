@@ -5,6 +5,9 @@ on:
     tags:
       - "*"
 
+permissions:
+  contents: write
+
 jobs:
   release:
     name: "Release"
@@ -17,10 +20,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
       - name: "Convert to shp and gpkg"
-        run: |
-          pip install -r requirements.txt
-          python script/convert.py
+        run: python script/convert.py
 
       - name: Create GitHub release
         id: release
