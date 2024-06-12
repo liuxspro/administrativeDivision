@@ -1,0 +1,26 @@
+name: "Release"
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  release:
+    name: "Release"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+
+      - name: "Convert to shp and gpkg"
+        run: |
+          python script/convert.py
+
+      - name: Create GitHub release
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create ${{ github.ref_name }} ./dist/*.zip -t "${{ github.ref_name }}" --generate-notes -d
