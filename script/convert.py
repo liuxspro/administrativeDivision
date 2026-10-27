@@ -6,7 +6,7 @@ import geopandas as gpd
 
 cwd = Path.cwd()
 
-geojson_path = cwd.joinpath("data")
+geojson_path = cwd.joinpath("data", "raw")
 dist_path = cwd.joinpath("dist")
 
 
